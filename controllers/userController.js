@@ -51,8 +51,8 @@ export const login = async (req, res) => {
     const user = await UserModel.findOne({ email: req.body.email });
 
     if (!user) {
-      return res.status(400).json({
-        message: "Неверный логин или пароль",
+      return res.status(404).json({
+        message: "Пользователя не существует",
       });
     }
 

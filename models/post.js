@@ -4,12 +4,15 @@ const PostSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      requred: true,
+      required: true,
     },
     text: {
       type: String,
-      requred: true,
+      required: true,
       unique: true,
+    },
+    imageUrl: {
+      type: String,
     },
     tags: {
       type: Array,
@@ -17,7 +20,7 @@ const PostSchema = new mongoose.Schema(
     },
     viewCount: {
       type: Number,
-      default: 0
+      default: 0,
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
@@ -31,4 +34,4 @@ const PostSchema = new mongoose.Schema(
   }
 );
 
-export default mongoose.model("Post", PostSchema)
+export default mongoose.model("Post", PostSchema);

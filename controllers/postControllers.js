@@ -23,6 +23,7 @@ export const getOne = async (req, res) => {
         { $inc: { viewCount: 1 } },
         { new: true }
       )
+      .populate('user')
       .exec();
 
     if (!updatedDoc) {
@@ -32,6 +33,7 @@ export const getOne = async (req, res) => {
     }
 
     res.json(updatedDoc);
+   
   } catch (err) {
     console.log(err);
     res.status(500).json({
@@ -68,7 +70,7 @@ export const create = async (req, res) => {
     const doc = new postModel({
       title: req.body.title,
       text: req.body.text,
-      tags: req.body.tags,
+      tags: req.body.tags.split(','),
       imageUrl: req.body.imageUrl,
       user: req.userId,
     });
@@ -95,7 +97,7 @@ export const update = async (req, res) => {
       {
         title: req.body.title,
         text: req.body.text,
-        tags: req.body.tags,
+        tags: req.body.tags.split(','),
         imageUrl: req.body.imageUrl,
         user: req.userId,
       }
